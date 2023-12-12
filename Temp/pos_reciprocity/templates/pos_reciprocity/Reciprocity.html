@@ -1,0 +1,44 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+{% load i18n %}
+
+
+{# ****************************************************************************************************************** #}
+{# *** STYLES *** #}
+{# ****************************************************************************************************************** #}
+{% block styles %}
+  <link href="{% static 'reciprocity_hypothetical/css/style_reciprocity.css' %}" rel="stylesheet">
+{% endblock %}
+
+
+{% block title %}
+    Part {{ part_index }}
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+<p>
+    Please think about what you would do in the following situation.
+    You are in an area you are not familiar with, and you realize you lost your way.
+    You ask a stranger for directions.
+    The stranger offers to take you to your destination.
+</p>
+<p>
+    Helping you costs the stranger about €{{ stranger_cost }} in total.
+    However, the stranger says he or she does not want any money from you.
+    You have six presents with you.
+    The cheapest present costs €{{ cheap_present }}, the most expensive one costs €{{ expensive_present }}.
+</p>
+<p>
+    Do you give one of the presents to the stranger as a “thank-you”-gift?
+    If so, which present do you give to the stranger?
+</p>
+
+
+    {% formfields %}
+
+    {% next_button %}
+
+</div>
+{% endblock %}

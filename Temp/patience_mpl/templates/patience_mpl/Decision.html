@@ -1,0 +1,175 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+{% load i18n %}
+
+
+{# ****************************************************************************************************************** #}
+{# *** STYLES *** #}
+{# ****************************************************************************************************************** #}
+{% block styles %}
+  <link href="{% static 'patience/css/style_patience.css' %}" rel="stylesheet">
+{% endblock %}
+
+
+{# ****************************************************************************************************************** #}
+{# *** SCRIPTS *** #}
+{# ****************************************************************************************************************** #}
+{% block scripts %}
+    {% if Constants.small_pies == True or Constants.large_pies == True %}
+        <script>
+            num_choices = {{ Constants.num_choices|json }};
+            one_choice = "{{ Constants.one_choice_per_page }}";
+            percentage = "{{ Constants.percentage }}";
+        </script>
+    {% endif %}
+
+<!--
+These scripts control whether the single switching point is enforced (enforce_consistency)
+and whether the participant has to click only on one option on the right column to complete the task (single_click).
+You can alter these settings in Constants in config.py. Here you also find additional details on their behavior.
+-->
+    {% if Constants.enforce_consistency == True %}
+        {% if Constants.one_choice_per_page == False and Constants.random_order == False %}
+            {% if Constants.single_click == True %}
+            <script src="{% static 'mpl/js/single_click.js' %}"></script>
+            {% else %}
+            <script src="{% static 'mpl/js/consistency.js' %}"></script>
+            {% endif %}
+        {% endif %}
+    {% endif %}
+{% endblock %}
+
+
+{# ****************************************************************************************************************** #}
+{# *** TITLE *** #}
+{# ****************************************************************************************************************** #}
+{% block title %}
+    {% trans "Your Decision" %}
+{% endblock %}
+
+
+{# ****************************************************************************************************************** #}
+{# *** CONTENT *** #}
+{# ****************************************************************************************************************** #}
+{% block content %}
+
+  <div class="container">
+    <div class="row">
+
+        <!-- ------------------------------------------------------------------------------------------------------- -->
+        <!-- Progress Bar -->
+        <!-- ------------------------------------------------------------------------------------------------------- -->
+        {% if Constants.one_choice_per_page == True and Constants.progress_bar == True %}
+            <label>
+                {% blocktrans trimmed with page=page total=total %}
+                    Page {{ page }} of {{ total }}
+                {% endblocktrans %}
+            </label>
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" style="width:{{ progress|json }}%;">
+                    <span class="sr-only"></span>
+                </div>
+            </div>
+        {% endif %}
+
+        <!-- ------------------------------------------------------------------------------------------------------- -->
+        <!-- Lottery Decisions: Large Pies -->
+        <!-- ------------------------------------------------------------------------------------------------------- -->
+      {% if Constants.one_choice_per_page == True and Constants.large_pies == True %}
+
+            <div class="card">
+                <table class="table">
+                    <thead>
+                        <tr class="header">
+                            <th class="center">{% trans "Option A" %}</th>
+                            <th class="center">{% trans "Option B" %}</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% for i,f,p in choices %}
+                            <tr>
+                                <td class="pie-chart">
+                                    {% with j=i|stringformat:"s" %}
+                                        {% with pies_a="pie_a_"|add:j %}
+                                            <div id="{{ pies_a }}" class="pie-chart"></div>
+                                        {% endwith %}
+                                    {% endwith %}
+                                </td>
+                                <td class="pie-chart">
+                                    {% with j=i|stringformat:"s" %}
+                                        {% with pies_b="pie_b_"|add:j %}
+                                            <div id="{{ pies_b }}" class="pie-chart"></div>
+                                        {% endwith %}
+                                    {% endwith %}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="center">
+                                    <button name="{{ f }}" value="A" class="btn btn-primary">
+                                        {% trans "Option A" %}
+                                    </button>
+                                </td>
+                                <td class="center">
+                                    <button name="{{ f }}" value="A" class="btn btn-primary">
+                                        {% trans "Option B" %}
+                                    </button>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+
+        <!-- ------------------------------------------------------------------------------------------------------- -->
+        <!-- Lottery Decisions: Choice List -->
+        <!-- ------------------------------------------------------------------------------------------------------- -->
+        {% else %}
+
+            <div class="card">
+                <table class="table table-striped">
+                    <thead>
+                        <tr class="header">
+                            <th class="payment-th" style="border-right: 2px solid #dee2e6;" colspan="2">{% trans "Payment today" %}</th>
+                            <!-- <th class="formfield" style="border-right: 2px solid #dee2e6;"></th> -->
+                            <!-- <th class="formfield"></th> -->
+                            <th class="payment-th" colspan="2">{% trans "Payment in 12 months" %}</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% for i,f,p in choices %}
+                            <tr>
+                                <!-- Lottery -->
+                                <td class="lottery">
+                                    {{ currency }}{{ payment }}
+                                </td>
+
+                                <!-- radio select form fields -->
+                                <td class="formfield" style="border-right: 2px solid #dee2e6;">
+                                    <input type="radio" name="{{ f }}" value="A" required>
+                                </td>
+                                <td class="formfield">
+                                    <input type="radio" name="{{ f }}" value="B" required>
+                                </td>
+
+                                <!-- Safe Payments -->
+                                <td class="safe-payment">
+                                    {{ currency }}{{ p|floatformat:2 }} <br/>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+          </div>
+        </div>
+
+        {% next_button %}
+
+    {% endif %}
+
+
+
+{% endblock %}

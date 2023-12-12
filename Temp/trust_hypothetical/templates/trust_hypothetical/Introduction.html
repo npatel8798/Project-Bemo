@@ -1,0 +1,19 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+{% load i18n %}
+
+
+{% block title %}
+    Part {{ part_index }}
+{% endblock %}
+
+
+{% block content %}
+
+  {% include instructions %}
+
+  {% next_button %}
+
+{% endblock %}
+
+

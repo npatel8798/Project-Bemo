@@ -1,0 +1,82 @@
+.table>thead>tr>td {
+    padding: 0.25rem;
+    vertical-align: center;
+    text-align: center;
+    border: 1px solid #dee2e6;
+    position:relative;
+    font-size:smaller;
+    font-weight: normal;
+    max-width: 100px;
+    }
+
+.table>tbody>tr>td { /* button cells */
+    padding: 1.33rem;
+    padding-bottom: 0.5rem;
+    padding-top: 0.5rem;
+    text-align: center;
+    border: 1px solid #dee2e6;
+    position:relative;
+    font-size:smaller;
+    font-weight: normal;
+    }
+
+table>tbody,
+ table>thead {
+    border: 1px solid #dee2e6;
+    }
+
+.table th {
+    font-weight: normal;
+    }
+
+.table td {
+    font-weight: normal;
+    }
+
+
+.table td, .table th {
+    padding: .5rem;
+    vertical-align: inherit; /* from the sassy css */
+    border-top: 1px solid #dee2e6;
+    }
+
+.table thead th {
+    vertical-align: bottom;
+    border-bottom: 1px solid #dee2e6;
+    margin-bottom: 0px;
+    }
+
+.scale-left {
+    text-align:start;
+    font-size: small;
+    border-left-style:hidden;
+    max-width: 50px;
+    padding-left:0.1rem;
+    }
+
+.scale-right {
+    text-align: end;
+    font-size: small;
+    max-width:50px;
+    padding-right:0.1rem;
+    }
+
+table tbody th {
+  min-width: 140px;
+}
+
+#scale-row {
+  border-top-style:hidden;
+  border-left-style:hidden;
+  border-right-style:hidden;
+}
+
+#overflow-table {
+  margin:1.5em;
+}
+
+@media screen and (max-width: 850px) {
+  #overflow-table {
+    overflow-x:scroll;
+  }
+}

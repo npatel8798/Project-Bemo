@@ -1,0 +1,37 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+{% load i18n %}
+
+
+{# ****************************************************************************************************************** #}
+{# *** STYLES *** #}
+{# ****************************************************************************************************************** #}
+{% block styles %}
+  <link href="{% static 'trust_hypothetical/css/style_trust.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block title %}
+    Part {{ part_index }} - Question {{ page }}
+{% endblock %}
+
+
+{% block content %}
+
+<div class="container">
+<p>
+    {% blocktrans trimmed with c=currency %}
+    Assume that the other person transfers {{ c }}{{ other_transfer }} to your account.
+    After the first step you have {{ c }}{{ endowment }}+{{ rate }}*{{ c }}{{ other_transfer }} = {{ c }}{{ final_endowment }},
+    the other person has {{ c }}{{ endowment }}-{{ c }}{{ other_transfer }} = {{ c }}{{ other_endowment }}.
+    Which amount do you transfer back? (Integers between 0 and {{ final_endowment }} are allowed.)
+    {% endblocktrans %}
+</p>
+
+    {% formfields %}
+
+    {% next_button %}
+
+    {% include instructions %}
+
+{% endblock %}
+</div>

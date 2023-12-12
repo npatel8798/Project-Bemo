@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title></title>
+
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+{% load i18n %}
+
+
+{# ****************************************************************************************************************** #}
+{# *** STYLES *** #}
+{# ****************************************************************************************************************** #}
+{% block styles %}
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+  integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link href="{% static 'patience/css/style_patience.css' %}" rel="stylesheet"/>
+{% endblock %}
+
+
+{# ****************************************************************************************************************** #}
+{# *** TITLE *** #}
+{# ****************************************************************************************************************** #}
+{% block title %}
+    Part {{ part_index }}
+{% endblock %}
+
+</head>
+<body>
+
+{# ****************************************************************************************************************** #}
+{# *** CONTENT *** #}
+{# ****************************************************************************************************************** #}
+
+<div class="container">
+<div class="row">
+
+{% block content %}
+
+<div class="instructions">
+    <h4>Instructions</h4>
+    <p>
+        {% blocktrans trimmed with n=num_choices c=currency p=payment|floatformat:2 p1=payment1|floatformat:2 p2=payment2|floatformat:2  p3=payment3|floatformat:2 mp=max_payment|floatformat:2 %}
+        On the following screen you will see {{ n }} hypothetical scenarios.
+        In each scenario you can choose between a payment that you would receive today and a payment that you
+        would receive in a year from now.
+        The payment today will be the same in each scenario ({{ c }}{{ p }}).
+
+        The payment in 12 months increases from scenario to scenario.
+        Its value is {{ c }}{{ p1 }} in the first scenario, {{ c }}{{ p2 }} in the second, {{ c }}{{ p3 }} in the third,
+        and so on. In the last scenario, the value is {{ c }}{{ mp }}.
+        {% endblocktrans %}
+    </p>
+
+    {% if Constants.enforce_consistency %}
+    <p>
+        Since the payment in 12 months gets better and better in each scenario,
+        you should switch from the payment today to the payment in 12 months only once.
+        This means that, if in a certain scenario you choose the payment in 12 months,
+        then you should choose the payment in 12 months also in the subsequent scenarios.
+        Likewise, it means that you should choose the payment today in all the preceding scenarios.
+        In other words, the scenario in which you accept the payment in 12 months will mark
+        the point where you stop to choose the payment today and you begin to choose the payment in 12 months.
+    </p>
+
+    <p>
+        Following this idea, the experiment comes with a feature that, once you select a payment today
+        or a payment in 12 months,
+        automatically checks all the remaining payments for you.
+    </p>
+        {% if Constants.single_click %}
+        <p>
+            In particular, once you select a payment in 12 months, the feature will automatically check
+            all the payments in 12 months that follow the one you selected and, at the same time,
+            all the payments today that precede the payment in 12 months you selected.
+            In other words, as you click on a payment in 12 months,
+            this feature will select for you all the payments in 12 months below and all the payments today above.
+            This means that you will only have to select the point in which you want to switch your selection
+            from the payment today to the payment in 12 months.
+        </p>
+        {% else %}
+        <p>
+            In particular, once you select a payment in 12 months, the feature will automatically check
+            all the payment in 12 months that follow the one you selected.
+            Likewise, once you select a payment today, the feature will automatically check all the payments today
+            that precede the one you selected.
+            This means that you only need to select a payment in 12 months and the payment that precedes it.
+        </p>
+        {% endif %}
+
+    <p>Mind that you can revise your decision for as long as you want before submitting it.</p>
+
+    {% endif %}
+
+    <p>Please, indicate the scenario where you choose the payment in 12 months over the payment today.</p>
+
+    {% if results %}
+    <p>
+        {% blocktrans trimmed with n=num_choices %}
+            After you have submitted your decision, one of the {{ n }} scenarios will be randomly chosen for
+            your payment.
+            If, at the randomly chosen scenario, you chose the lottery option, your payoff will be determined according
+            to the corresponding probabilities. Otherwise, you will earn the safe payment.
+        {% endblocktrans %}
+    </p>
+    {% endif %}
+</div>
+
+    {% next_button %}
+
+{% endblock %}
+</div>
+</div>

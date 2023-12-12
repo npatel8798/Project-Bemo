@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table Cell Selection Form</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+
+        input[type="radio"] {
+            display: none;
+        }
+
+        label {
+            display: block;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        input[type="radio"]:checked + label {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+<form id="tableForm" action="your_submit_url_here" method="post">
+    <table id="selectionTable">
+        <tr>
+            <td>
+                <input type="radio" id="cell_A1" name="selectedCell" value="A1">
+                <label for="cell_A1">A1</label>
+            </td>
+            <td>
+                <input type="radio" id="cell_B1" name="selectedCell" value="B1">
+                <label for="cell_B1">B1</label>
+            </td>
+            <td>
+                <input type="radio" id="cell_C1" name="selectedCell" value="C1">
+                <label for="cell_C1">C1</label>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="radio" id="cell_A2" name="selectedCell" value="A2">
+                <label for="cell_A2">A2</label>
+            </td>
+            <td>
+                <input type="radio" id="cell_B2" name="selectedCell" value="B2">
+                <label for="cell_B2">B2</label>
+            </td>
+            <td>
+                <input type="radio" id="cell_C2" name="selectedCell" value="C2">
+                <label for="cell_C2">C2</label>
+            </td>
+        </tr>
+        <!-- Add more rows and cells as needed -->
+    </table>
+
+    <button type="submit">Submit</button>
+</form>
+
+</body>
+</html>

@@ -1,0 +1,34 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+{% load i18n %}
+
+
+{# ****************************************************************************************************************** #}
+{# *** STYLES *** #}
+{# ****************************************************************************************************************** #}
+{% block styles %}
+  <link href="{% static 'trust_hypothetical/css/style_trust.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block title %}
+    Part {{ part_index }} - Question {{ page }}
+{% endblock %}
+
+
+{% block content %}
+
+<div class="container">
+<p>
+    Finally, a different question:
+    assume you were in the position of the other person and had to decide which amount to transfer.
+    Which amount would you transfer? (Integers between 0 and {{ endowment }} are allowed.)
+</p>
+
+    {% formfields %}
+
+    {% next_button %}
+
+    {% include instructions %}
+
+{% endblock %}
+</div>

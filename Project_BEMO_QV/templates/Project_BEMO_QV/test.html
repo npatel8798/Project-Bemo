@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Toggle Selection</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 300px;
+    }
+
+    th, td {
+      border: 1px solid black;
+      padding: 10px;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    th:hover, td:hover {
+      background-color: lightgray;
+    }
+
+    .selected {
+      background-color: lightblue;
+    }
+  </style>
+</head>
+<body>
+
+  <table>
+    <tr>
+      <th onclick="toggleSelection('optionA')">Option A</th>
+      <th onclick="toggleSelection('optionB')">Option B</th>
+    </tr>
+    <tr>
+      <td id="optionA" onclick="selectCell('optionA', this)">Row 1 Content A</td>
+      <td id="optionB" onclick="selectCell('optionB', this)">Row 1 Content B</td>
+    </tr>
+  </table>
+
+  <script>
+    let selectedOption = null;
+
+    function toggleSelection(option) {
+      const optionACell = document.getElementById('optionA');
+      const optionBCell = document.getElementById('optionB');
+
+      if (option === 'optionA') {
+        selectedOption = 'optionA';
+        optionACell.classList.add('selected');
+        optionBCell.classList.remove('selected');
+      } else if (option === 'optionB') {
+        selectedOption = 'optionB';
+        optionBCell.classList.add('selected');
+        optionACell.classList.remove('selected');
+      }
+    }
+
+    function selectCell(option, cell) {
+      const optionACell = document.getElementById('optionA');
+      const optionBCell = document.getElementById('optionB');
+
+      if (option === selectedOption) {
+        cell.classList.remove('selected');
+        selectedOption = null;
+        optionACell.classList.remove('selected');
+        optionBCell.classList.remove('selected');
+      } else {
+        cell.classList.add('selected');
+        selectedOption = option;
+        optionACell.classList.toggle('selected', option === 'optionA');
+        optionBCell.classList.toggle('selected', option === 'optionB');
+      }
+    }
+  </script>
+
+</body>
+</html>

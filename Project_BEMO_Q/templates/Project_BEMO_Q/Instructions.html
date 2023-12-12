@@ -1,0 +1,67 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+{% load i18n %}
+
+
+{# ****************************************************************************************************************** #}
+{# *** STYLES *** #}
+{# ****************************************************************************************************************** #}
+{% block styles %}
+    <link href="{% static 'icl_time/css/custom.css' %}" rel="stylesheet"/>
+{% endblock %}
+
+
+{# ****************************************************************************************************************** #}
+{# *** TITLE *** #}
+{# ****************************************************************************************************************** #}
+{% block title %}
+    Introduction
+{% endblock %}
+
+
+{# ****************************************************************************************************************** #}
+{# *** CONTENT *** #}
+{#                I deleted this sentence from second blocktrans: The lottery gives you a {{ p_hi }} chance of receiving {{ hi }}#}
+{#                and a {{ p_lo }} chance of receiving {{ lo }}.#}
+{#                I deleted this sentence from third blocktrans: After completing all {{ n }} choices, one of the choices will be randomly picked to determine your#}
+{#                payoff. #}
+{# ****************************************************************************************************************** #}
+
+{% block content %}
+
+<div class="instructions">
+<h4>Instructions</h4>
+
+    {% blocktrans trimmed with a=a%}
+        <!-- <p>Suppose you were given the choice between receiving
+            a payment <font color="blue"><b> today ({{ today }}) </b></font> or
+            a payment <font color="red"><b>in 12 months ({{ in_12_months }})</b></font>.</p> -->
+        <p> Introduction and Video</p>
+    {% endblocktrans %}
+
+    <!-- {% blocktrans trimmed with n=Constants.num_choices %}
+        <p>We will now present to you {{ n }} situations.</p>
+        <p>The payment <font color="blue"><b>today</b></font> is the same in each of these situations.</p>
+        <p>The payment <font color="red"><b>in 12 months</b></font> is different in every situation.</p>
+        For each of these situations, we would like to know which you would choose.
+        Please assume there is no inflation, i.e., future prices are the same as today’s prices.
+    {% endblocktrans %}
+
+    {% comment %}
+
+        {% blocktrans trimmed with n=Constants.num_choices %}
+            If you chose the lottery, a random draw will determine whether the high or low outcome will
+            constitute your payoff; otherwise, the sure payment will constitute your payoff.
+        {% endblocktrans %}
+
+
+        {% blocktrans trimmed with conversionrate=Constants.conversionrate %}
+            We will convert Experimental Euros to Euros using the rate {{ conversionrate }} Experimental Euros = 1 Euro.
+        {% endblocktrans %}
+
+    {% endcomment %} -->
+
+</div>
+
+    {% next_button %}
+{% endblock %}

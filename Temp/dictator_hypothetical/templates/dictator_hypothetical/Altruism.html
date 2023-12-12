@@ -1,0 +1,31 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+{% load i18n %}
+
+
+{# ****************************************************************************************************************** #}
+{# *** STYLES *** #}
+{# ****************************************************************************************************************** #}
+{% block styles %}
+  <link href="{% static 'altruism_hypothetical/css/style_altruism.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block title %}
+    Part {{ part_index }}
+{% endblock %}
+
+
+{% block content %}
+
+<div class="container">
+<p>
+   Imagine the following situation: Today you unexpectedly received €{{ endowment_str }}.
+   How much of this amount would you donate to a good cause? (Integers between 0 and {{ endowment }} are allowed.)
+</p>
+
+    {% formfields %}
+
+    {% next_button %}
+</div>
+
+{% endblock %}

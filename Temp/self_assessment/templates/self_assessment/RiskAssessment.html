@@ -1,0 +1,85 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{# ****************************************************************************************************************** #}
+{# *** STYLES *** #}
+{# ****************************************************************************************************************** #}
+
+{% block styles %}
+    <link href="{% static 'self_assessment/css/style_assess.css' %}" rel="stylesheet">
+{% endblock %}
+
+
+{# ****************************************************************************************************************** #}
+{# *** TITLE *** #}
+{# ****************************************************************************************************************** #}
+
+{% block title %}
+    Part {{ part_index }} - Question 2
+{% endblock %}
+
+
+{# ****************************************************************************************************************** #}
+{# *** CONTENT *** #}
+{# ****************************************************************************************************************** #}
+
+{% block content %}
+<div class="container">
+    <p>
+        Please tell me, in general, how willing or unwilling you are to take risks.
+        Please use a scale from 0 to 10, where 0 means “completely unwilling to take risks”
+        and a 10 means you are “very willing to take risks”.
+        You can also use any numbers between 0 and 10 to indicate where you fall on the scale,
+        like 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10.
+    </p>
+</div>
+
+<div id="overflow-table">
+<table class="table" style="margin-bottom:0px">
+<thead>
+
+{# Wording of level 0 and 10 of the scale #}
+<tr id="scale-row">
+    <th style="border-right: 1px solid #dee2e6;">
+    </th>
+
+    <th class="scale-left">Completely unwilling</th>
+
+    <th colspan="9"></th>
+
+    <th class="scale-right">Very willing</th>
+</tr>
+</thead>
+
+{# Creating the 10 levels of the scale #}
+<tr>
+        <th>
+        </th>
+        {% for i in levels %}
+        <td>
+            {{ i }}
+        </td>
+        {% endfor %}
+    </tr>
+
+
+{# Creating the questions #}
+
+   {% for field in form %}
+    <tr>
+        <th>
+            {{ field.label }}
+        </th>
+       {% for choice in field %}
+        <td>
+            {{ choice }}
+            {% endfor %}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+</div>
+
+{% next_button %}
+
+{% endblock %}
