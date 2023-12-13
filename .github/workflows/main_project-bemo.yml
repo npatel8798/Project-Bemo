@@ -67,3 +67,4 @@ jobs:
           app-name: 'Project-BEMO'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_E0B12F3EF18A41D6B867E1CA5EA0B496 }}
+          run: otree devserver
