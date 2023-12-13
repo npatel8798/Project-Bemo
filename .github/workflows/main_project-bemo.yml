@@ -61,10 +61,4 @@ jobs:
 
       
       - name: 'Deploy to Azure Web App'
-        uses: azure/webapps-deploy@v2
-        id: deploy-to-webapp
-        with:
-          app-name: 'Project-BEMO'
-          slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_E0B12F3EF18A41D6B867E1CA5EA0B496 }}
-          run: otree devserver
+        run: otree devserver
