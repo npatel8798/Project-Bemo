@@ -72,7 +72,7 @@ class Player(BasePlayer):
         self.survey_id = 'Part 1'
         # add current round's sure payoff to model field
         # ------------------------------------------------------------------------------------------------------------
-        self.survey_id = 'Part 2'
+        self.survey_id = 'Part 1'
         self.u_id = select_ui = self.participant.vars['uid'][self.round_number - 1]
         self.left_h = select_lh = self.participant.vars['left_h'][self.round_number - 1]
         self.left_m = select_lm = self.participant.vars['left_m'][self.round_number - 1]
