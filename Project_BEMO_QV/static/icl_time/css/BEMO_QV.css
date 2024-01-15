@@ -1,0 +1,210 @@
+/* ****************************************************************************************************************** */
+/* *** General *** */
+/* ****************************************************************************************************************** */
+
+h2 {
+    text-align: center !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+  margin-bottom: $headings-margin-bottom;
+  text-align:center;
+  padding: 25px;
+}
+
+h4 {
+    text-align: center !important;
+    padding: 5px;
+    padding-top:0;
+}
+
+body {
+  font-size: 1.1rem;
+}
+
+p {
+    text-align: justify;
+    padding: 0.05rem;
+    margin-top: -21.5px;
+    margin-bottom: 0;
+}
+
+.page-header {
+    margin: 10px 0 1.5px;
+    padding: 0px;
+    border-bottom: none;
+}
+
+.otree-btn-next {
+    margin: 40px auto;
+    display: inherit;
+}
+
+/* .wrapper, .alert {
+    min-width: 500px;
+    max-width: 600px;
+    margin: 0 auto 20px;
+    font-size: 1.2rem;
+} */
+
+
+/* ****************************************************************************************************************** */
+/* *** Instructions *** */
+/* ****************************************************************************************************************** */
+
+.instructions {
+	/* width: 100%; */
+  max-width: 768px;
+	height: 100%;
+	background: rgba(255,255,245,0.25);
+	margin: 40px auto;
+    padding: 20px 20px 10px 20px;
+    font-size: inherit;
+    text-align: justify;
+
+    position:relative;
+    -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2), 0 0 20px rgba(0, 0, 0, 0.05) inset;
+       -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2), 0 0 20px rgba(0, 0, 0, 0.05) inset;
+            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2), 0 0 20px rgba(0, 0, 0, 0.05) inset;
+
+    -moz-border-radius: 5px;
+         border-radius: 5px;
+}
+
+
+/* ****************************************************************************************************************** */
+/* *** Decision/Results Table *** */
+/* ****************************************************************************************************************** */
+
+.card {
+  min-width: 60%;
+  /* max-width: 600px; */
+  /* margin: auto; */
+}
+
+.card-header {
+    /* margin-top: -2rem; */
+    padding: 5px;
+    font-weight: 600;
+}
+
+.table {
+    margin-bottom: 0;
+}
+
+.table>tbody>tr>th {
+    /* vertical-align: middle; */
+    /* padding: 0.5em; */
+    height: 50px;
+    width: 30%;
+    text-align: center;
+    /* min-width: 110px; */
+}
+
+.table>tbody>tr>td {
+  /* vertical-align: middle; */
+  /* padding: 0.5em; */
+  height: 70px;
+  margin-top: -21.5px;
+}
+
+.formfield-td {
+  /* max-width: 50px; */
+  width: 15%;
+  text-align: center;
+}
+
+.info {
+    padding: 15px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+}
+
+input[type="hidden"]{
+    margin: 7.5px;
+}
+
+.btn-success[disabled], .btn-primary[disabled] {
+    opacity: 1;
+}
+
+.choice {
+    min-width: 100px;
+}
+
+#optionA {
+    background-color: #3498db;
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+  }
+
+  #optionB {
+    background-color: #2ecc71;
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+  }
+
+  #optionA:hover {
+    background-color: #2980b9;
+  }
+
+  /* Hover state styles for optionB */
+  #optionB:hover {
+    background-color: #27ae60;
+  }
+
+/* ****************************************************************************************************************** */
+/* *** Progress Bar *** */
+/* ****************************************************************************************************************** */
+
+.progress {
+    height: 15px;
+    /* margin-bottom: 30px; */
+    /* max-width: 600px; */
+    margin: auto;
+    margin-bottom: 3em;
+}
+
+.progress-bar {
+    background-color: rgba(43, 102, 154, 0.20);
+    background-image: linear-gradient(to bottom, rgba(43, 102, 154, 0.1) 0, rgba(43, 102, 154, 0.6) 100%);
+    background-repeat: repeat-x;
+}
+
+label {
+    font-weight: normal;
+    margin-bottom: 4pt;
+}
+
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+label {
+    display: block;
+    cursor: pointer;
+    padding: 8px;
+}
+
+input[type="radio"]:checked + label {
+    background-color: #f2f2f2;
+}

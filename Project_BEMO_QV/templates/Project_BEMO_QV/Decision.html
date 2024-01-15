@@ -7,7 +7,7 @@
 {# *** STYLES *** #}
 {# ****************************************************************************************************************** #}
 {% block styles %}
-  <link href="{% static 'icl_time/css/custom.css' %}" rel="stylesheet">
+  <link href="{% static 'icl_time/css/bemo.css' %}" rel="stylesheet">
 {% endblock %}
 
 
@@ -15,15 +15,13 @@
 {# *** TITLE *** #}
 {# ****************************************************************************************************************** #}
 {% block title %}
-    {% trans "Your Decision" %}
 {% endblock %}
 
 
 {# ****************************************************************************************************************** #}
 {# *** CONTENT *** #}
 {# ****************************************************************************************************************** #}
-{% block content %}
-
+{{ block content }}
     <div class="container">
       <div class="row">
           <div class="col-md-14">
@@ -31,21 +29,12 @@
             <!-- ------------------------------------------------------------------------------------------------------- -->
             <!-- Progress Bar -->
             <!-- ------------------------------------------------------------------------------------------------------- -->
-            {% if Constants.progress_bar == True %}
-                <div class="card" style="border:none;">
-                  <label>
-                      {% blocktrans trimmed with page=page total=total %}
-                          Page {{ page }} of {{ total }}
-                      {% endblocktrans %}
-                  </label>
-                </div>
-                <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width:{{ progress|json }}%;">
-                        <span class="sr-only"></span>
-                    </div>
-                </div>
-            {% endif %}
-
+            <div class="card" style="border:none;">
+                <label>
+                    Question {{ quest }} of {{ total }}
+                    <progress value={{ quest }} max={{ total }}></progress>
+                </label>
+            </div>
 
         <!-- ------------------------------------------------------------------------------------------------------- -->
         <!-- Table - Lottery Decisions (Option A/B) -->
@@ -56,31 +45,29 @@
             </div>
 
             <table class="table">
-                <thead>
-                    <tr>
-                        <th style="text-align: center;">{% trans "Option A" %}</th>
-                        <th style="text-align: center;">{% trans "Option B" %}</th>
-                    </tr>
-                </thead>
+                <!-- <thead>
+                </thead> -->
                 <tbody>
                     <tr>
                         <td class="formfield-td", style='white-space: pre-line'>
-                            {% with a=a left_path=left_path uid=uid %}
-                                {% blocktrans trimmed %}
-                                    {{ a }} <br />
-                                {% endblocktrans %}
-                                <img src="{% static left_path %}" alt="{{ uid }}" style="height: 20rem">
-                            {% endwith %}
-                            <div style="display: flex; flex-direction: column;"><input style="display: block;" type="radio" name="choice" value="A" required></div>
+                            <div style="margin-top: -2rem; display: flex; flex-direction: column;">
+                                <button type="button" onclick="recordResponse(this)"value="A" id="optionA">Option A</button>
+                            </div>
+                            <div style="margin-top: -2.5rem; margin-bottom: -1.5rem;">
+                                    {{ a }}
+                            </div>
+                                <img src="{% static left_path %}" alt="{{ uid }}" style="height: 15rem">
+
                         </td>
+                        
                         <td class="formfield-td", style='white-space: pre-line'>
-                            {% with b=b right_path=right_path %}
-                                {% blocktrans trimmed %}
-                                    {{ b }} <br />
-                                {% endblocktrans %}
-                                <img src="{% static right_path %}" alt="My Image" style="height: 20rem">
-                            {% endwith %}
-                            <div style="display: flex; flex-direction: column;"><input style="display: block;" type="radio" name="choice" value="B" required></div>
+                            <div style="margin-top: -2rem; display: flex; flex-direction: column;">
+                                <button type="button" onclick="recordResponse(this)" value="B" id="optionB" > Option B</button>
+                            </div>
+                            <div style="margin-top: -2.5rem; margin-bottom: -1.5rem;">
+                                    {{ b }}
+                                </div>
+                                <img src="{% static right_path %}" alt="{{ uid }}" style="height: 15rem">
                         </td>
                     </tr>
                 </tbody>
@@ -88,9 +75,28 @@
         </div>
       </div>
     </div>
-    {% if Constants.buttons == False %}
-        {% next_button %}
-    {% endif %}
+    <button class="otree-btn-next btn btn-primary" id="next"  disabled="true"> Next</button>
+</div>
+
+<input type="hidden" name="choice" id="resultInput">
+
+<script>
+
+    function recordResponse(btn) {
+        var buttons = document.querySelectorAll('button');
+        buttons.forEach(function (button) {
+            button.classList.remove('selected');
+        });
+        console.log(btn.value=== null)
+        btn.classList.add('selected');
+        if (btn.value=== null) {
+        document.getElementById('next').disabled = true;
+        } else {
+        document.getElementById('resultInput').value = btn.value;
+        document.getElementById('next').disabled = false;
+        } 
+    }
+</script>
+
 
 {% endblock %}
-</div>

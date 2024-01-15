@@ -7,7 +7,7 @@
 {# *** STYLES *** #}
 {# ****************************************************************************************************************** #}
 {% block styles %}
-    <link href="{% static 'icl_time/css/custom.css' %}" rel="stylesheet"/>
+    <link href="{% static 'icl_time/css/bemo.css' %}" rel="stylesheet"/>
 {% endblock %}
 
 
@@ -15,7 +15,7 @@
 {# *** TITLE *** #}
 {# ****************************************************************************************************************** #}
 {% block title %}
-    Introduction
+    Welcome to the BEMO Study
 {% endblock %}
 
 
@@ -30,38 +30,39 @@
 {% block content %}
 
 <div class="instructions">
-<h4>Instructions</h4>
+<h4></h4>
+    
+    <input type="hidden" name="is_mobile" id="is_mobile">
+    <p> You are invited to participate in this survey as a result of your enrollment in select UMBC courses. If you choose to participate you will be asked to make a series of decisions among potential monetary outcomes. </p> <br>
 
-    {% blocktrans trimmed with a=a%}
-        <!-- <p>Suppose you were given the choice between receiving
-            a payment <font color="blue"><b> today ({{ today }}) </b></font> or
-            a payment <font color="red"><b>in 12 months ({{ in_12_months }})</b></font>.</p> -->
-        <p> Introduction and Video</p>
-    {% endblocktrans %}
+    <p> Your participation is voluntary and you may end the study at any time without penalty. If you complete both parts of the study (the first part right now and the second part at the end of the semester) you will receive extra credit points for your course and you become eligible for monetary compensation. The compensation will be based on the choices you make (and some luck). </p> <br>
+        
+    <p> On the next page we ask you to provide some information about yourself. You will then see an instructional video on the survey questions and how monetary compensation is determined, followed by the questions themselves. </p> <br>
 
-    <!-- {% blocktrans trimmed with n=Constants.num_choices %}
-        <p>We will now present to you {{ n }} situations.</p>
-        <p>The payment <font color="blue"><b>today</b></font> is the same in each of these situations.</p>
-        <p>The payment <font color="red"><b>in 12 months</b></font> is different in every situation.</p>
-        For each of these situations, we would like to know which you would choose.
-        Please assume there is no inflation, i.e., future prices are the same as today’s prices.
-    {% endblocktrans %}
-
-    {% comment %}
-
-        {% blocktrans trimmed with n=Constants.num_choices %}
-            If you chose the lottery, a random draw will determine whether the high or low outcome will
-            constitute your payoff; otherwise, the sure payment will constitute your payoff.
-        {% endblocktrans %}
-
-
-        {% blocktrans trimmed with conversionrate=Constants.conversionrate %}
-            We will convert Experimental Euros to Euros using the rate {{ conversionrate }} Experimental Euros = 1 Euro.
-        {% endblocktrans %}
-
-    {% endcomment %} -->
 
 </div>
 
     {% next_button %}
+
+    <script>
+        function isMobile() {
+            const toMatch = [
+                /Android/i,
+                /iPhone/i,
+                /iPad/i,
+            ];
+    
+            return toMatch.some((item) => navigator.userAgent.match(item));
+        }
+    
+        // here is an alternative technique that checks screen resolution
+        // function isMobile() {
+        //     return ((window.innerWidth <= 800) && (window.innerHeight <= 600));
+        // }
+    
+        forminputs.is_mobile.value = isMobile() ? 1 : 0;
+    
+    </script>
+
+
 {% endblock %}
