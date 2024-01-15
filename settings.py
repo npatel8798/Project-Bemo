@@ -15,13 +15,13 @@ SESSION_CONFIGS = [
 
 ROOMS = [
     dict(
-        name='Project_BEMO',
+        name='Project_BEMO_Q',
         display_name='Project_BEMO_Q',
         participant_label_file='_rooms/batch1.txt',
         use_secure_urls=False
     ),
     dict(
-        name='Project_BEMO',
+        name='Project_BEMO_QV',
         display_name='Project_BEMO_QV',
         participant_label_file='_rooms/batch1.txt',
         use_secure_urls=False
