@@ -1,4 +1,0 @@
-otree==5.10.3
-pandas
-numpy
-psycopg2>=2.8.4
