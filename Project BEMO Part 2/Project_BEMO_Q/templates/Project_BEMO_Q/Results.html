@@ -1,0 +1,61 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+{% load i18n %}
+
+
+{# ****************************************************************************************************************** #}
+{# *** STYLES *** #}
+{# ****************************************************************************************************************** #}
+{% block styles %}
+    <link href="{% static 'icl_time/css/bemo.css' %}" rel="stylesheet"/>
+{% endblock %}
+
+
+{# ****************************************************************************************************************** #}
+{# *** TITLE *** #}
+{# ****************************************************************************************************************** #}
+{% block title %}
+    Thank you
+{% endblock %}
+
+
+{# ****************************************************************************************************************** #}
+{# *** CONTENT *** #}
+{# ****************************************************************************************************************** #}
+
+{% block content %}
+
+<div class="instructions">
+<h4></h4>
+    
+    <input type="hidden" name="is_mobile" id="is_mobile">
+    <p> Thank you for participating in the BEMO survey. Your responses to the individual questions have been recorded. As a result of your participation in this survey, you will receive the extra credit points specified in the course syllabus. You are also eligible for a monetary compensation, based on the responses you provided.  </p>
+    <p> For your monetary compensation we will randomly select one of the lotteries you chose from the two parts of the survey, and play it out based on a random draw. We will do so in the next days after the survey has been completed and inform you by email of the outcome. </p> <br>
+    <p> Thank you again for participating in our study! </p> <br>
+    <p> Prof. Bernedo </p> <br>
+
+
+</div>
+
+    <script>
+        function isMobile() {
+            const toMatch = [
+                /Android/i,
+                /iPhone/i,
+                /iPad/i,
+            ];
+    
+            return toMatch.some((item) => navigator.userAgent.match(item));
+        }
+    
+        // here is an alternative technique that checks screen resolution
+        // function isMobile() {
+        //     return ((window.innerWidth <= 800) && (window.innerHeight <= 600));
+        // }
+    
+        forminputs.is_mobile.value = isMobile() ? 1 : 0;
+    
+    </script>
+
+
+{% endblock %}
