@@ -1,0 +1,68 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+{% load i18n %}
+
+
+{# ****************************************************************************************************************** #}
+{# *** STYLES *** #}
+{# ****************************************************************************************************************** #}
+{% block styles %}
+    <link href="{% static 'icl_time/css/bemo.css' %}" rel="stylesheet"/>
+{% endblock %}
+
+
+{# ****************************************************************************************************************** #}
+{# *** TITLE *** #}
+{# ****************************************************************************************************************** #}
+{% block title %}
+    Welcome to the BEMO Study
+{% endblock %}
+
+
+{# ****************************************************************************************************************** #}
+{# *** CONTENT *** #}
+{#                I deleted this sentence from second blocktrans: The lottery gives you a {{ p_hi }} chance of receiving {{ hi }}#}
+{#                and a {{ p_lo }} chance of receiving {{ lo }}.#}
+{#                I deleted this sentence from third blocktrans: After completing all {{ n }} choices, one of the choices will be randomly picked to determine your#}
+{#                payoff. #}
+{# ****************************************************************************************************************** #}
+
+{% block content %}
+
+<div class="instructions">
+<h4></h4>
+    
+    <input type="hidden" name="is_mobile" id="is_mobile">
+    <p> You are invited to participate in this survey as a result of your enrollment in select UMBC courses. If you choose to participate you will be asked to make a series of decisions among potential monetary outcomes. </p> <br>
+
+    <p> Your participation is voluntary and you may end the study at any time without penalty. If you complete both parts of the study (the first part right now and the second part at the end of the semester) you will receive extra credit points for your course and you become eligible for monetary compensation. The compensation will be based on the choices you make (and some luck). </p> <br>
+        
+    <p> On the next page we ask you to provide some information about yourself. You will then see an instructional video on the survey questions and how monetary compensation is determined, followed by the questions themselves. </p> <br>
+
+
+</div>
+
+    {% next_button %}
+
+    <script>
+        function isMobile() {
+            const toMatch = [
+                /Android/i,
+                /iPhone/i,
+                /iPad/i,
+            ];
+    
+            return toMatch.some((item) => navigator.userAgent.match(item));
+        }
+    
+        // here is an alternative technique that checks screen resolution
+        // function isMobile() {
+        //     return ((window.innerWidth <= 800) && (window.innerHeight <= 600));
+        // }
+    
+        forminputs.is_mobile.value = isMobile() ? 1 : 0;
+    
+    </script>
+
+
+{% endblock %}

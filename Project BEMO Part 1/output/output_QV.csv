@@ -1,0 +1,3 @@
+session,participant_code,participant_label,uid,choice,Payout_High,Payout_Middle,Payout_Low,Left_High,Left_Middle,Left_low,Right_High,Right_Middle,Right_Low,Page_Time,Time_Started_UTC,Survey_ID
+19tmsf91,8gpfoh85,,Q_68,A,$50,$20,$10,0.8,0.2,0.0,0.6,0.3,0.1,1.9722349643707275,1711591565.1553,Part 1
+19tmsf91,8gpfoh85,,Q_54,A,$100,$75,$20,0.05,0.75,0.2,0.55,0.05,0.4,2.243422269821167,1711591567.2215693,Part 1

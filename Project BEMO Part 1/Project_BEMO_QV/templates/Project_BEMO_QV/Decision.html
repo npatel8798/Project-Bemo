@@ -1,0 +1,98 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+{% load i18n %}
+
+
+{# ****************************************************************************************************************** #}
+{# *** STYLES *** #}
+{# ****************************************************************************************************************** #}
+{% block styles %}
+  <link href="{% static 'icl_time/css/bemo.css' %}" rel="stylesheet">
+{% endblock %}
+
+
+{# ****************************************************************************************************************** #}
+{# *** TITLE *** #}
+{# ****************************************************************************************************************** #}
+{% block title %}
+{% endblock %}
+
+
+{# ****************************************************************************************************************** #}
+{# *** CONTENT *** #}
+{# ****************************************************************************************************************** #}
+{{ block content }}
+    <div class="container">
+      <div class="row">
+          <div class="col-md-14">
+
+            <!-- ------------------------------------------------------------------------------------------------------- -->
+            <!-- Progress Bar -->
+            <!-- ------------------------------------------------------------------------------------------------------- -->
+            <div class="card" style="border:none;">
+                <label>
+                    Question {{ quest }} of {{ total }}
+                    <progress value={{ quest }} max={{ total }}></progress>
+                </label>
+            </div>
+        <h5 style="padding: 0%;"> What do you prefer? </h5>
+        <!-- ------------------------------------------------------------------------------------------------------- -->
+        <!-- Table - Lottery Decisions (Option A/B) -->
+        <!-- ------------------------------------------------------------------------------------------------------- -->
+        <div class="card">
+            <table class="table">
+                <!-- <thead>
+                </thead> -->
+                <tbody>
+                    <tr>
+                        <td class="formfield-td", style='white-space: pre-line'>
+                            <div style="margin-top: -2rem; display: flex; flex-direction: column;">
+                                <button type="button" onclick="recordResponse(this)"value="A" id="optionA" style="font-size: 20px; font-weight: 600;">Option A</button>
+                            </div>
+                            <div style="margin-top: -2.5rem; margin-bottom: -1.5rem; font-size: 20px;">
+                                    {{ a }}
+                            </div>
+                                <img src="{% static left_path %}" alt="{{ uid }}" style="height: 17rem">
+
+                        </td>
+                        
+                        <td class="formfield-td", style='white-space: pre-line'>
+                            <div style="margin-top: -2rem; display: flex; flex-direction: column;">
+                                <button type="button" onclick="recordResponse(this)" value="B" id="optionB" style="font-size: 20px; font-weight: 600;"> Option B</button>
+                            </div>
+                            <div style="margin-top: -2.5rem; margin-bottom: -1.5rem; font-size: 20px;">
+                                    {{ b }}
+                                </div>
+                                <img src="{% static right_path %}" alt="{{ uid }}" style="height: 17rem">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>       
+        </div>
+      </div>
+    </div>
+    <button class="otree-btn-next btn btn-primary" id="next"  disabled="true"> Next</button>
+</div>
+
+<input type="hidden" name="choice" id="resultInput">
+
+<script>
+
+    function recordResponse(btn) {
+        var buttons = document.querySelectorAll('button');
+        buttons.forEach(function (button) {
+            button.classList.remove('selected');
+        });
+        console.log(btn.value=== null)
+        btn.classList.add('selected');
+        if (btn.value=== null) {
+        document.getElementById('next').disabled = true;
+        } else {
+        document.getElementById('resultInput').value = btn.value;
+        document.getElementById('next').disabled = false;
+        } 
+    }
+</script>
+
+
+{% endblock %}
